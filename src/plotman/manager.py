@@ -132,7 +132,7 @@ def maybe_start_new_plot(dir_cfg, sched_cfg, plotting_cfg):
                 stderr=subprocess.STDOUT,
                 start_new_session=True)
 
-            psutil.Process(p.pid).nice(15)
+            psutil.Process(p.pid).nice(psutil.ABOVE_NORMAL_PRIORITY_CLASS)
             return (True, logmsg)
 
     return (False, wait_reason)
