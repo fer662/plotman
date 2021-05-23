@@ -106,6 +106,11 @@ def maybe_start_new_plot(dir_cfg, sched_cfg, plotting_cfg):
             else:
                 dstdir = max(dir2ph, key=dir2ph.get)
 
+            if dir_cfg.tmp_overrides is not None and d in dir_cfg.tmp_overrides:
+                curr_overrides = dir_cfg.tmp_overrides[d]
+                if curr_overrides.keep_in_same_place is not None:
+                    dst = tmpdir
+
             logfile = os.path.join(
                 dir_cfg.log, pendulum.now().isoformat(timespec='microseconds').replace(':', '_') + '.log'
             )
@@ -165,7 +170,7 @@ def maybe_start_new_plot(dir_cfg, sched_cfg, plotting_cfg):
                     stderr=subprocess.STDOUT,
                     start_new_session=True)
 
-            psutil.Process(p.pid).nice(psutil.ABOVE_NORMAL_PRIORITY_CLASS)
+            psutil.Process(p.pid).nice(15)
             return (True, logmsg)
 
     return (False, wait_reason)
