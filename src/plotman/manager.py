@@ -106,8 +106,8 @@ def maybe_start_new_plot(dir_cfg, sched_cfg, plotting_cfg):
             else:
                 dstdir = max(dir2ph, key=dir2ph.get)
 
-            if dir_cfg.tmp_overrides is not None and d in dir_cfg.tmp_overrides:
-                curr_overrides = dir_cfg.tmp_overrides[d]
+            if dir_cfg.tmp_overrides is not None and tmpdir in dir_cfg.tmp_overrides:
+                curr_overrides = dir_cfg.tmp_overrides[tmpdir]
                 if curr_overrides.keep_in_same_place is not None:
                     dst = tmpdir
 
