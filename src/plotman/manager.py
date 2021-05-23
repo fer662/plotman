@@ -109,7 +109,7 @@ def maybe_start_new_plot(dir_cfg, sched_cfg, plotting_cfg):
             if dir_cfg.tmp_overrides is not None and tmpdir in dir_cfg.tmp_overrides:
                 curr_overrides = dir_cfg.tmp_overrides[tmpdir]
                 if curr_overrides.keep_in_same_place is not None:
-                    dst = tmpdir
+                    dstdir = tmpdir
 
             logfile = os.path.join(
                 dir_cfg.log, pendulum.now().isoformat(timespec='microseconds').replace(':', '_') + '.log'
